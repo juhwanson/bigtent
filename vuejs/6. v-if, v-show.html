@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰 기초 익히기</title>
+  <style>
+    .red{
+      color: red;
+    }
+    .bold{
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+      <!-- <div v-if="show">Yes</div>
+      <div v-else>No</div> -->
+      <!-- v-if
+      선언 후에 안에다가 데이터 프로퍼티 명을 입력하고
+      스크립트 안에 데이터에 프로퍼티를 설정하고 불리언으로 설정하면
+      true일 경우 보여주고, false일 경우 가려 준다.\
+      1. 버튼에서 @click을 활용하고 메소드로 불리언을 변경하게 해주면 
+        true, false가 바뀐당... 
+      2. v-else도 있음 false일때 다른것을 보여주고싶다면
+      3. 여러개를 동시에 보여주고 싶다면 ㅡ<template>으로 감싸고 안에다가 v-if를 넣는다.
+      4. v-else-if=""도 있음.(switch문과 비슷)-->
+      <!-- <template v-if="show">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>Yes</div>
+      </template>  
+      <div v-else>No</div>
+      <button @click="toggleShow">클릭</button> -->
+      <!-- <template v-if="number === 1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>Yes</div>
+      </template>
+      <div v-else-if="number === 2">gi</div>  
+      <div v-else>No</div> -->
+
+      <!-- v-show -->
+      <div v-show="show">Yes</div>
+      <button @click="toggle">클릭</button>
+      <!-- v-if와 v-show의 차이
+      1. v-if는 false일때 랜더링을 안하지만 v-show는 랜더링을 하지만 보여주지 않을 뿐이다.
+      2. v-if는 토글할때마다 랜더링을 하지만 v-show는 초기 랜더링 비용이 높다.
+      3. 따라서 자주 바뀔때에는 v-show, 런타임시 조건이 바뀌지 않으면 v-if를 권장한다-->
+    </div>
+    <script>
+      new Vue({ 
+        el: '#app',
+      
+        data: {
+          number: 1,
+          show: false 
+          
+          },
+          methods: {
+          // iscreaseNumber(){
+          //   this.number++;
+          // }
+          toggle(){
+            this.show = !this.show;
+          }
+          
+        }
+
+
+      })
+    </script>
+</body>
+</html>

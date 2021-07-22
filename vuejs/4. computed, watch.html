@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰 기초 익히기</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+      {{message}}<br>
+      <button @click="changeMessage">Click</button><br>
+      <!-- {{reversedMessage}} -->
+      {{updated}}
+    </div>
+    <script>
+      new Vue({ 
+        el: '#app',
+        
+        data: {
+          message: "안녕하세요",
+          updated: '아니요'
+         
+        },
+        methods: {
+          changeMessage(){
+            this.message = '손주환';
+          }
+          
+        },
+        //computed 속성 선언
+        computed: { 
+          //methods VS computed
+          //1. methods는 (), computed 안해도 됨
+          //2. computed는 종속대상에 따라 저장(캐싱)되어 있고, methods는 호출할때마다 실행됨.
+          reversedMessage(){
+            return this.message.split('').reverse().join(''); // 재사용성이 용이해짐
+          }
+        },// watchs : 주로 computed를 사용하지만 감시하고 싶은 데이터가 있을 때 사용
+        watch: {
+          message(newVal, oldVal){
+            console.log(newVal, oldVal);
+            this.updated = "네";
+          }
+
+
+        }
+
+
+      })
+    </script>
+</body>
+</html>

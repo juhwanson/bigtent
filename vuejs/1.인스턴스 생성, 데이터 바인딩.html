@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰 기초 익히기</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+       <!-- Vue 태그 사용 가능 구간 -->
+       {{nextYear("안녕하세요!")}}
+       <!-- {{}}은 프로퍼티 단위로 생성해주어야 함 -->
+       <!-- HTML태그에 바인딩(연결) 하기 : 예) input, a 태그-->
+       <!-- v-bind:  뷰 데이터에 있는 것과 연결 : 원하는건 다 된다-->
+       <!-- v-bind:는 콜론만 넣어도 작동 한다 -->
+       <!-- v-bind: 는 데이터 뿐 아니라 함수도 가지고 올 수 있다. -->
+       <input :type="inputType" :value="inputData">
+       <a :href="getNaverLink('/news')">네이버</a>
+
+       <!-- 이벤드 생성하기 -->
+       <button>click me</button>
+    </div>
+    <script>
+      new Vue({ // 뷰 인스턴스 생성: 데이터, 메소드 {} 서로,로 구분
+        el: '#app',
+        // data: {     // 프로퍼티단위로 {{}} 생성해주어야 함.
+        //   name: "손주환",
+        //   age: 34
+        // },
+        data: { // 데이터는 키밸류와 객체 두가지로 넣을 수 있다.
+          person:{
+            name: "손주환",
+            age: 34
+          },
+          inputData: 'Hello',
+          inputType: "number",
+          inputLink: 'https://www.naver.com'
+        },
+        methods: {
+          getNaverLink(channel){
+            return this.inputLink + channel;
+          },
+          nextYear: function (greeting) {
+            return greeting+this.person.name+'는 내년에'+(this.person.age+1)+'살 입니다.';// this는 Vue를 지칭
+          }, // ,로 구분하고 다른 메소드를 선언 할 수도 있음.
+          otherMethod : function () {
+            this.nextYear();
+          }
+        },
+
+      })
+    </script>
+</body>
+</html>

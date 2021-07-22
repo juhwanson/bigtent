@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰 기초 익히기</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+  <!-- Vue 컴포넌트  : 반복되는 뷰 인스턴트를 재사용이 용이하게 만드는 것
+        1. 전역 컴포넌트 등록 : Vue.component(tagname, {options})
+        2. 지역 컴포넌트 등록 : -->
+    <div id="app">
+            <!-- {{name}}<br>
+            <button @click="changeText">click</button> -->
+      <btn-juhwan></btn-juhwan>
+    </div>
+    <hr><hr>
+    <div id="app1">
+            <!-- {{name}}<br>
+            <button @click="changeText">click</button> -->
+            <!-- <hr> -->
+      <btn-juhwan></btn-juhwan>
+    </div>
+    <script>
+      //컴포넌트 안에 컴포넌트를 사용 할 수 있다.
+        // Vue.component('hello-world',{
+        //   template: '<div>hello world</div>'
+        // });
+        // //전역 컴포넌트 등록 
+        // 컴포넌트를 만든다.(template, data(), methods)
+        // 인스턴스에 컴포넌트를 등록하고
+        // div안에 태그를 넣는다
+        Vue.component('btn-juhwan', {
+        
+          template: `
+              <div>
+                  {{ name }}<br>
+                  <hello-world></hello-world>
+                  <button @click="changeText">Click</button>
+              </div>
+              `,//여기에는 html태그가 들어감(하나의 태그로 들어가야 함 - div로 묶음)
+          //  data: {// 전역 컴포넌트에 데이터를 넣으면 참조주소로 넘어가서 값이 바뀔수 있다! -> 함수로 사용
+          //     name: '손주환'
+          //     },
+            data(){ // 함수를 만들어서 리턴을 만든후 객체를 반환해주도록 해야 함.
+              return{
+                name: '손주환'
+              }
+            },
+            methods: {
+              changeText(){
+                this.name='손주환 업뎃';
+                //2. 바꾸고 싶은 곳의 this를 변경한다.(예 app1 클릭 - app의 text변경)
+              }        
+            },
+        });
+        //지역 컴포넌트 등록
+        //1. 변수에 컴포넌트를 담는다
+        //2. 인스턴스에 컴포넌트를 넣는다
+        // const HelloWorld = {
+        //     template: '<div>hello world</div>'
+        // };
+
+        // const KossieButton = {
+        //     components: {
+        //         'hello-world': HelloWorld
+        //     },
+        //     template: `
+        //     <div>
+        //         {{ name }}<br>
+        //         <hello-world></hello-world>
+        //         <button @click="changeText">Click</button>
+        //     </div>
+        //     `,
+        //     data() {
+        //         return {
+        //             name: 'kossie'
+        //         }
+        //     },
+        //     methods: {
+        //         changeText() {
+        //             this.name = 'kossie updated';
+        //         }
+        //     },
+        // };
+        const app = new Vue({ 
+            el: '#app',
+            components: {
+                  'btn-juhwan': btn-juhwan
+            }
+        //     data: {
+        //       name: '손주환'
+        //       },
+        //     methods: {
+        //       changeText(){
+        //         app1.name='손주환 업뎃';
+        //         //2. 바꾸고 싶은 곳의 this를 변경한다.(예 app1 클릭 - app의 text변경)
+        //       }        
+        //     }
+          });
+          const app1 = new Vue({ 
+            el: '#app1',
+            components: {
+                  'btn-juhwan': btn-juhwan
+            }
+          
+        //     data: {
+        //       name: '손주환1'
+        //       },
+        //     methods: {
+        //       changeText(){
+        //         this.name='손주환1 업뎃';
+        //       }        
+        //     }
+          })      
+    </script>
+</body>
+</html>

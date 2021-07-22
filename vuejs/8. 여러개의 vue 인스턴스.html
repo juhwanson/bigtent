@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰 기초 익히기</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+  <!-- 여러개의 vue 인스턴스
+  1. 한개의 div당 1개의 new Vue -->
+    <div id="app">
+   {{name}}<br>
+   <button @click="changeText">click</button>
+    </div>
+    <div id="app1">
+      {{name}}<br>
+      <button @click="changeText">click</button>
+       </div>
+    <script>
+      //만약 다른 뷰에 있는 데이터를 활용하고 싶다면
+      //1. 변수에 담는다
+      const app = new Vue({ 
+        el: '#app',
+      
+        data: {
+          name: '손주환'
+          },
+        methods: {
+          changeText(){
+            app1.name='손주환 업뎃';
+            //2. 바꾸고 싶은 곳의 this를 변경한다.(예 app1 클릭 - app의 text변경)
+          }        
+        }
+      })
+      const app1 = new Vue({ 
+        el: '#app1',
+      
+        data: {
+          name: '손주환1'
+          },
+        methods: {
+          changeText(){
+            this.name='손주환1 업뎃';
+          }        
+        }
+      })
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰 기초 익히기</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+       <!-- {{year}}<br> -->
+       <!-- 이벤드 생성하기 v-on:-->
+       <!-- onclick에서 on을 지우고 v-on:click 또한 @로 대체 가능!! -->
+       <!-- Q)왜 함수인데 () 안붙여도 인식하지??? -->
+       <!-- <button v-on:click="plus">더하기</button>
+       <button v-on:click="minus">빼기</button> -->
+
+       <!-- 다른 이벤트 : form태그 -->
+       <form v-on:submit.prevent="submit">
+         <input type="text"><br>
+         <button type="submit">submit</button>
+       </form>
+       <!-- form 태그의 경우 submit할 경우 리로드 해줌. 하기 싫다면? 
+            이벤트 수식어 사용(도큐 멘트 참고) - 수식어는 체이닝이 가능함
+            .stop(이벤트 전파 중단), .prevent(페이지를 다시 로드 하지 않음), .capture,
+            .self, .once(한번만 트리거), .passive를 v-on:이벤트 뒤에 점찍고 사용하면 됌!-->
+
+        <!-- 키 수식어 
+          v-on:keyup : 키보드를 눌렀다 뗄때마다 인식
+          v-on:keyup.enter : 엔터를 누를때만 인식
+          그 외 : .enter, .tab, .delete, .esc, .space, .up, .down, .left, .right -->
+    </div>
+    <script>
+      new Vue({ // 뷰 인스턴스 생성: 데이터, 메소드 {} 서로,로 구분
+        el: '#app',
+        
+        data: {
+          // year: 2018
+        },
+        methods: {
+          // plus(){
+          //   return this.year++;
+          // },
+          // minus(){
+          //   return this.year--;
+          // }
+          submit(){
+            alert('submitted');
+            console.log("hello");
+          
+          } 
+
+         
+        }
+
+      })
+    </script>
+</body>
+</html>

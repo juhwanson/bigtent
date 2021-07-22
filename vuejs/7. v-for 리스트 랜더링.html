@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰 기초 익히기</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+      <!-- v-for 리스트 랜더링
+        1. 데이터 생성 : 여기서는 리스트에 객체를 담았음
+        2. div 영역에 v-for 선언 : ="인자 in(of도 가능) 리스트 명"
+        3. 차례대로 나올 것임으로 인자에 점표기법으로 키값 적으면 출력~~~
+        4. 인덱스를 출력하고 싶다면 : v-for="(person, index) in people" 소괄호로 매개변수를 묶어서 인덱스를 추가
+        5. 각 항목들에 고유한 key 속성을 제공해야 한다 : 예) v-for="person in people" key="person.name"(PK이여야 함!)
+            {id : 1, name: 'a', age: 20 } 직접 아이디를 입력해줘도 된다! key="person.id"
+       -->
+       <!-- v-for와 객체 : 도큐먼트 참고  -->
+      <div v-for="person in people">
+        {{person.name}} {{person.age}}
+      </div>
+      
+    </div>
+    <script>
+      new Vue({ 
+        el: '#app',
+      
+        data: {
+          
+            people: [
+              {name: 'a', age: 20 },
+              {name: 'b', age: 21 },
+              {name: 'c', age: 22 },
+              {name: 'd', age: 23 }
+            ]
+          },
+        methods: {
+         
+          
+        }
+
+
+      })
+    </script>
+</body>
+</html>
